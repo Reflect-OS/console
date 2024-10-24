@@ -50,7 +50,6 @@ defmodule ReflectOS.ConsoleWeb.DashboardLive.Index do
         {ReflectOS.ConsoleWeb.LayoutLive.ConfigFormComponent, {:saved, layout}},
         socket
       ) do
-
     {:noreply,
      socket
      |> assign(:active_layout, layout)

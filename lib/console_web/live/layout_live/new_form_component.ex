@@ -115,8 +115,8 @@ defmodule ReflectOS.ConsoleWeb.LayoutLive.NewFormComponent do
          socket
          |> assign(reflectos_layout: layout)}
 
-         %Changeset{valid?: false} = changeset ->
-          {:noreply, assign(socket, form: to_form(changeset, as: "layout", action: :validate))}
+      %Changeset{valid?: false} = changeset ->
+        {:noreply, assign(socket, form: to_form(changeset, as: "layout", action: :validate))}
     end
   end
 end

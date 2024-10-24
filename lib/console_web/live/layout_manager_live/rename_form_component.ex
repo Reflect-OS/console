@@ -70,7 +70,8 @@ defmodule ReflectOS.ConsoleWeb.LayoutManagerLive.RenameFormComponent do
 
     case LayoutManagerChangeset.change(layout_manager, layout_manager_params) do
       %Changeset{valid?: false} = changeset ->
-        {:noreply, assign(socket, form: to_form(changeset, as: "layout_manager", action: :validate))}
+        {:noreply,
+         assign(socket, form: to_form(changeset, as: "layout_manager", action: :validate))}
 
       # If there are no changes, just go back
       %Changeset{changes: changes} when changes == %{} or changes == [] ->
