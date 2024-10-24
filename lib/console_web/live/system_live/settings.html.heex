@@ -1,0 +1,92 @@
+<.header>
+  System Settings
+</.header>
+
+<form class="max-w-sm mx-auto">
+  <.input
+    type="select"
+    label="Active Layout Manager"
+    field={@form[:layout_manager]}
+    phx-change="layout_manager_changed"
+    options={@layout_manager_options}
+  >
+    <:help_text>
+      Layout managers determine which layout should be shown on the dashboard,
+      but only one can be active at a time. <br /><br />
+      This setting determines which layout manager is responsible for
+      what is displayed on the dashboard.
+    </:help_text>
+  </.input>
+
+  <.input
+    type="select"
+    label="Time Format"
+    field={@form[:time_format]}
+    phx-change="time_format_changed"
+    options={[
+      "12-Hour (6:30 PM)": "%-I:%M %p",
+      "24-Hour (18:30)": "%-H:%M"
+    ]}
+  >
+    <:help_text>
+      Default format for the system, but some section types allow you to customize this.
+    </:help_text>
+  </.input>
+
+  <.input
+    type="select"
+    label="Timezone"
+    field={@form[:timezone]}
+    phx-change="timezone_changed"
+    options={@timezone_options}
+  >
+    <:help_text>
+      Default timezone for the system, but some section types allow you to customize this.
+    </:help_text>
+  </.input>
+
+  <.input
+    type="select"
+    label="Show Instructions"
+    field={@form[:show_instructions]}
+    phx-change="show_instructions_changed"
+    options={[{"Yes", true}, {"No", false}]}
+  >
+    <:help_text>
+      By default, ReflectOS shows instructions for accessing and using the app
+      to configure the mirror.  Set this option to "No" to hide these instructions.
+    </:help_text>
+  </.input>
+
+  <.input
+    type="text"
+    label="Screen Size"
+    pattern="\d{3,4}x\d{3,4}"
+    field={@form[:viewport_size]}
+    phx-debounce="blur"
+    phx-change="viewport_size_changed"
+  >
+    <:icon>
+      <svg
+        class="w-4 h-4 text-gray-500 dark:text-gray-400"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 7H7m2 3H7m2 3H7m4 2v2m3-2v2m3-2v2M4 5v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-9a1 1 0 0 1-1-1V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1Z"
+        />
+      </svg>
+    </:icon>
+    <:help_text>
+      Size of your display's screen in pixels in width by height format (e.g. 1080x1920)
+    </:help_text>
+  </.input>
+</form>

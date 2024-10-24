@@ -1,0 +1,11 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+
+/* This file is for your main application CSS */
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}

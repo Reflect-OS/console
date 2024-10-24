@@ -1,0 +1,122 @@
+<.header>
+  Active Layout
+  <:subtitle>
+    <%= @active_layout.name %>
+  </:subtitle>
+</.header>
+
+<div class="max-w-sm mx-auto">
+  <div :for={{label, sections} <- @location_sections}>
+    <h5 class={[
+      "text-l font-medium text-gray-900 dark:text-white"
+    ]}>
+      <%= label %>
+    </h5>
+    <hr class={["h-px bg-gray-200 border-0 dark:bg-gray-700", Enum.count(sections) == 0 && "mb-4"]} />
+    <.list id={"section-list-#{label}"} items={sections}>
+      <:item :let={section}>
+        <.list_item
+          id={"#{String.replace(label, " ", "-")}-#{section[:id]}"}
+          icon={section[:icon]}
+          title={section[:name]}
+          subtitle={section[:type]}
+          actions={[
+            {"Configure", ~p"/dashboard/sections/#{section[:id]}/configure", ""}
+          ]}
+        />
+      </:item>
+    </.list>
+  </div>
+</div>
+
+<button
+  id="action-menu-toggle-active-layout"
+  phx-click={toggle_dropdown("#action-menu-active-layout")}
+  class="fixed end-6 bottom-6 flex items-center justify-center text-white bg-zinc-900 hover:bg-zinc-700 rounded-full w-14 h-14  focus:ring-4 focus:ring-zinc-900 focus:outline-none dark:focus:ring-zinc-900"
+  type="button"
+>
+  <svg
+    class="w-5 h-5"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="none"
+    viewBox="0 0 24 24"
+  >
+    <path
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"
+    />
+  </svg>
+  <span class="sr-only">Manage Layout Sections</span>
+</button>
+<!-- Dropdown menu -->
+<div
+  id="action-menu-active-layout"
+  phx-click-away={toggle_dropdown("#action-menu-active-layout")}
+  style="display: none"
+  class="fixed end-6 bottom-[90px] z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+>
+  <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+    <li>
+      <a
+        phx-click={
+          JS.patch(~p"/dashboard/manage-layout") |> toggle_dropdown("action-menu-active-layout")
+        }
+        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+      >
+        Manage Sections
+      </a>
+      <a
+        phx-click={
+          JS.patch(~p"/dashboard/configure-layout")
+          |> toggle_dropdown("action-menu-active-layout")
+        }
+        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+      >
+        Configure Layout
+      </a>
+    </li>
+  </ul>
+</div>
+
+<.drawer
+  :if={@live_action in [:configure]}
+  id="layout-config-form"
+  show
+  on_cancel={JS.patch(~p"/")}
+>
+  <.live_component
+    module={ReflectOS.ConsoleWeb.LayoutLive.ConfigFormComponent}
+    id={@active_layout.id}
+    reflectos_layout={@active_layout}
+    patch={~p"/"}
+  />
+</.drawer>
+
+<.drawer :if={@live_action in [:manage]} id="layout-manage-form" show on_cancel={JS.patch(~p"/")}>
+  <.live_component
+    module={ReflectOS.ConsoleWeb.LayoutLive.ManageFormComponent}
+    id={@active_layout.id}
+    reflectos_layout={@active_layout}
+    patch={~p"/"}
+  />
+</.drawer>
+
+<.drawer
+  :if={@live_action in [:section_configure]}
+  id="section-config-form"
+  show
+  on_cancel={JS.patch(~p"/")}
+>
+  <.live_component
+    module={ReflectOS.ConsoleWeb.SectionLive.ConfigFormComponent}
+    id={@section.id}
+    section={@section}
+    patch={~p"/"}
+  />
+</.drawer>

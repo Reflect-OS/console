@@ -1,0 +1,197 @@
+<.header>
+  About
+</.header>
+
+<p>
+  ReflectOS is the approachable, configurable, and extensible
+  OS for your smart mirror/display project.  Using this web app, you can add, arrange,
+  and configure the elements on your dashboard - and even
+  toggle between several different layouts.
+</p>
+<br />
+<p>
+  If you are a first time user, we encourage you to read
+  on below for a quick overview of how the system works.  However, if
+  you aren't a "follow the instructions" type - we get it!
+  You can jump right in to adding sections your system by
+  visiting the <.link class="underline" href="/sections">Sections Page</.link>.
+  <br/>
+  <br/>
+  Once created, sections can be added to the current layout on the 
+  <.link class="underline" href="/">Dashboard</.link>.
+</p>
+<br />
+<div
+  class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+  role="alert"
+>
+  <span class="font-medium">Pro tip!</span> If you're on a mobile device, you can add this web app
+  to your home screen by using the "Add to Home Screen"
+  option in your browser.
+</div>
+<div
+  class="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
+  role="alert"
+>
+  <span class="font-medium">Heads Up!</span>
+  For security purposes, this web app is only available on your local network.
+</div>
+
+<h3
+  id="system-compnents"
+  class={[
+    "text-xl mb-4 font-semibold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white"
+  ]}
+>
+  System Components
+</h3>
+
+<h4
+  id="sections"
+  class={[
+    "text-l mt-4 mb-2 font-semibold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white"
+  ]}
+>
+  Sections
+</h4>
+<p>
+  In ReflectOS, the visual elements which display on the dashboard
+  are called "Sections", and they are the primary
+  building blocks of the system.  When creating a new section,
+  you first select the "Section Type" from the
+  pre-installed available options.
+</p>
+<br />
+<p>
+  Your system currently has the following Section Types
+  installed:
+</p>
+<ul class="mt-2 mb-2 max-w-md space-y-1 list-disc list-inside">
+  <li :for={type <- @section_types}>
+    <%= type.name %>
+    <br />
+    <div :if={type.description != nil} class="ml-3 text-sm text-gray-500 dark:text-gray-400">
+      <%= Phoenix.LiveView.TagEngine.component(
+        type.description,
+        [],
+        {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
+      ) %>
+    </div>
+  </li>
+</ul>
+<p>
+  After selecting the type, you can name and configure
+  the section.  Most section types offer several configuration options
+  which allow customization of what information is displayed.
+</p>
+<div
+  class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+  role="alert"
+>
+  <span class="font-medium">Pro tip!</span>
+  You can create multiple sections of the same type and configure them differently.
+  For example, the `Date/Time` section allows you to configure the time zone, so you
+  could have a `Date/Time` section for several locations worldwide on your dashboard.
+</div>
+<p>
+  You can add, configure, and remove the sections available for display
+  in your system on the <.link class="underline" href="/sections">Sections Page</.link>.
+</p>
+
+<h4
+  id="layouts"
+  class={[
+    "text-l mt-4 mb-2 font-semibold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white"
+  ]}
+>
+  Layouts
+</h4>
+<p>
+  Layouts represent visual arrangements of the sections on your system's screen.
+  Layouts will have one or more "locations", which are essentially the slots where you can place
+  a configured section.
+</p>
+<br />
+<p>
+  Much like sections, each layout also has a "Layout Type" which defines the visual arrangement
+  and the available configuration options.
+</p>
+<br />
+<p>
+  Note that you can add multiple sections to the same location, and most layout types
+  offer configuration options which determine how these should be arranged.
+</p>
+<br />
+<p>
+  For example, the default system layout is a "Four Corner" layout type, which allows you to place sections in
+  each of the four corners of the screen (i.e. the locations are Top Left, Top Right, Bottom Left, Bottom Right).
+  It also has configuration options which allows you to decide
+  if sections should be arranged vertically or horizontally in a given location and the spacing
+  between them.
+</p>
+<br />
+<p>
+  Your system currently has the following Layout Type(s)
+  installed:
+</p>
+<ul class="mt-2 mb-2 max-w-md space-y-1 list-disc list-inside">
+  <li :for={type <- @layout_types}>
+    <%= type.name %>
+    <br />
+    <div :if={type.description != nil} class="ml-3 text-sm text-gray-500 dark:text-gray-400">
+      <%= Phoenix.LiveView.TagEngine.component(
+        type.description,
+        [],
+        {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
+      ) %>
+    </div>
+  </li>
+</ul>
+<p>
+  You can add, configure, and remove the layouts available for display
+  in your system on the <.link class="underline" href="/layouts">Layouts Page</.link>.
+</p>
+<h4
+  id="layout-managers"
+  class={[
+    "text-l mt-4 mb-2 font-semibold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white"
+  ]}
+>
+  Layout Managers
+</h4>
+<p>
+  Layout Managers are a unique feature of ReflectOS - as their name implies, they manage
+  which layout should be diplayed on your system's screen.  These are designed to allow your
+  system's screen to change in response to events in the outside world, such as a schedule or
+  a person arriving home.
+</p>
+<br />
+<p>
+  Just like Sections and Layouts, there can be multiple Layout Managers Types and you can create
+  multiple Layout Managers of the same type with different configurations.
+</p>
+<br />
+<p>
+  Your system currently has the following Layout Manager Types
+  installed:
+</p>
+<ul class="mt-2 mb-2 max-w-md space-y-1 list-disc list-inside">
+  <li :for={type <- @layout_manager_types}>
+    <%= type.name %>
+    <br />
+    <div :if={type.description != nil} class="ml-3 text-sm text-gray-500 dark:text-gray-400">
+      <%= Phoenix.LiveView.TagEngine.component(
+        type.description,
+        [],
+        {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
+      ) %>
+    </div>
+  </li>
+</ul>
+<p>
+  You can add, configure, and remove the layouts available for display
+  in your system on the <.link class="underline" href="/layouts">Layouts Page</.link>.
+  <br/>
+  <br/>
+  To change the active layout manager, checkout the <.link class="underline" href="/system/settings">System Settings Page</.link>.
+</p>

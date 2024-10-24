@@ -1,0 +1,10 @@
+<.navbar />
+
+<.sidebar active_tab={@active_tab} />
+
+<main class="p-4 md:ml-64 h-auto pt-[4rem]">
+  <div class="mx-auto max-w-2xl">
+    <.flash_group flash={@flash} />
+    <%= @inner_content %>
+  </div>
+</main>

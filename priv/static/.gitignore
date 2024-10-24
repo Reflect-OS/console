@@ -1,0 +1,6 @@
+*.gz
+*-*.json
+*-*.txt
+*-*.ico
+*-*.svg
+*-*.png
