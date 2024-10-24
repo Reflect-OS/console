@@ -1,8 +1,8 @@
 defmodule ReflectOS.ConsoleWeb.PageControllerTest do
   use ReflectOS.ConsoleWeb.ConnCase
 
-  test "GET /", %{conn: conn} do
-    conn = get(conn, ~p"/")
-    assert html_response(conn, 200) =~ "Peace of mind from prototype to production"
+  test "GET /about", %{conn: conn} do
+    conn = get(conn, ~p"/about")
+    assert html_response(conn, 200) =~ "ReflectOS"
   end
 end
