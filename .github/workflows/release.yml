@@ -73,6 +73,10 @@ jobs:
       - name: Fetch Dependencies
         run: mix deps.get
 
+      - name: Fetch Node Modules
+        run: npm install
+        working-directory: assets
+
       - name: Phoenix setup
         run: mix setup
 
