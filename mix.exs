@@ -49,6 +49,7 @@ defmodule ReflectOS.Console.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:ex_doc, "~> 0.34", only: :dev, runtime: false},
       {:phoenix, "~> 1.7.14"},
       {:phoenix_ecto, "~> 4.6"},
       {:phoenix_html, "~> 4.1"},
@@ -115,13 +116,12 @@ defmodule ReflectOS.Console.MixProject do
   defp package_files,
     do: [
       "lib",
+      "priv",
       ".formatter.exs",
       "CHANGELOG.md",
       "LICENSE",
       "mix.exs",
       "README.md",
-      "VERSION",
-      "priv",
-      "assets"
+      "VERSION"
     ]
 end

@@ -18,6 +18,10 @@ jobs:
         with:
           otp-version: 27
           elixir-version: 1.17.2
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       # Step: Define how to cache deps. Restores existing cache if present.
       - name: Cache deps
@@ -30,6 +34,18 @@ jobs:
           key: ${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
           restore-keys: |
             ${{ runner.os }}-mix-${{ env.cache-name }}-
+
+      # Step: Define how to cache node_modules. Restores existing cache if present.
+      - name: Cache node_modules
+        id: cache-node_modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-deps
+        with:
+          path: assets/node_modules
+          key: ${{ runner.os }}-npm-${{ env.cache-name }}-${{ hashFiles('assets/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-${{ env.cache-name }}-   
 
       # Step: Define how to cache the `_build` directory. After the first run,
       # this speeds up tests runs a lot. This includes not re-compiling our
@@ -53,6 +69,15 @@ jobs:
           mix deps.clean --all
           mix clean
         shell: sh
+
+      - name: Fetch Dependencies
+        run: mix deps.get
+
+      - name: Phoenix setup
+        run: mix setup
+
+      - name: Phoenix Assets Deploy
+        run: mix assets.deploy
       
       - name: Get Version
         id: get-version
@@ -67,6 +92,11 @@ jobs:
           draft: false
           tag_name: v${{ steps.get-version.outputs.version}}
           body_path: RELEASE_NOTES
+
+      - name: Publish Package
+        run: mix hex.publish --yes
+        env:
+          HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
 
   prepare-next-release:
     name: Prepare Next Release
