@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.10.3
+
 ## v0.10.2
 
 * Bugfix for showing non-default layouts on the dashboard
