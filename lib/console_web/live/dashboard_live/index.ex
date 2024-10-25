@@ -1,12 +1,12 @@
 defmodule ReflectOS.ConsoleWeb.DashboardLive.Index do
   alias ReflectOS.Kernel.Section
   alias ReflectOS.Kernel.Settings.SectionStore
-  alias ReflectOS.Kernel.Settings.LayoutStore
+  alias ReflectOS.Kernel.ActiveLayout
 
   use ReflectOS.ConsoleWeb, :live_view
   @impl true
   def mount(_params, _session, socket) do
-    active_layout = LayoutStore.get("default")
+    active_layout = ActiveLayout.get()
 
     socket =
       socket

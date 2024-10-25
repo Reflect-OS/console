@@ -2,6 +2,8 @@
 
 ## v0.10.2
 
+* Bugfix for showing non-default layouts on the dashboard
+
 ## v0.10.1
 
 * Removes hericons, which are not currently being used.
