@@ -2,6 +2,8 @@
 
 ## v0.10.3
 
+* Fix to include web app icons
+
 ## v0.10.2
 
 * Bugfix for showing non-default layouts on the dashboard
