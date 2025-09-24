@@ -1,7 +1,7 @@
 <.header>
   Active Layout
   <:subtitle>
-    <%= @active_layout.name %>
+    {@active_layout.name}
   </:subtitle>
 </.header>
 
@@ -10,7 +10,7 @@
     <h5 class={[
       "text-l font-medium text-gray-900 dark:text-white"
     ]}>
-      <%= label %>
+      {label}
     </h5>
     <hr class={["h-px bg-gray-200 border-0 dark:bg-gray-700", Enum.count(sections) == 0 && "mb-4"]} />
     <.list id={"section-list-#{label}"} items={sections}>

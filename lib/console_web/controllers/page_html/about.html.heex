@@ -69,14 +69,14 @@
 </p>
 <ul class="mt-2 mb-2 max-w-md space-y-1 list-disc list-inside">
   <li :for={type <- @section_types}>
-    <%= type.name %>
+    {type.name}
     <br />
     <div :if={type.description != nil} class="ml-3 text-sm text-gray-500 dark:text-gray-400">
-      <%= Phoenix.LiveView.TagEngine.component(
+      {Phoenix.LiveView.TagEngine.component(
         type.description,
         [],
         {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
-      ) %>
+      )}
     </div>
   </li>
 </ul>
@@ -137,14 +137,14 @@
 </p>
 <ul class="mt-2 mb-2 max-w-md space-y-1 list-disc list-inside">
   <li :for={type <- @layout_types}>
-    <%= type.name %>
+    {type.name}
     <br />
     <div :if={type.description != nil} class="ml-3 text-sm text-gray-500 dark:text-gray-400">
-      <%= Phoenix.LiveView.TagEngine.component(
+      {Phoenix.LiveView.TagEngine.component(
         type.description,
         [],
         {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
-      ) %>
+      )}
     </div>
   </li>
 </ul>
@@ -178,14 +178,14 @@
 </p>
 <ul class="mt-2 mb-2 max-w-md space-y-1 list-disc list-inside">
   <li :for={type <- @layout_manager_types}>
-    <%= type.name %>
+    {type.name}
     <br />
     <div :if={type.description != nil} class="ml-3 text-sm text-gray-500 dark:text-gray-400">
-      <%= Phoenix.LiveView.TagEngine.component(
+      {Phoenix.LiveView.TagEngine.component(
         type.description,
         [],
         {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
-      ) %>
+      )}
     </div>
   </li>
 </ul>

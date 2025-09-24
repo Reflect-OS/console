@@ -24,10 +24,10 @@ defmodule ReflectOS.ConsoleWeb.PageComponents do
         "text-2xl font-semibold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white",
         @subtitle == [] && "mb-4"
       ]}>
-        <%= render_slot(@inner_block) %>
+        {render_slot(@inner_block)}
       </h2>
       <h3 :if={@subtitle != []} class="mb-4 font-thin">
-        <%= render_slot(@subtitle) %>
+        {render_slot(@subtitle)}
       </h3>
     </header>
     """
@@ -69,7 +69,7 @@ defmodule ReflectOS.ConsoleWeb.PageComponents do
           phx-click={@item_click && @item_click.(item)}
         >
           <div class="flex items-center relative">
-            <%= render_slot(@item, @item_map.(item)) %>
+            {render_slot(@item, @item_map.(item))}
           </div>
         </li>
       </ul>
@@ -100,11 +100,11 @@ defmodule ReflectOS.ConsoleWeb.PageComponents do
         phx-click={@title_click && @title_click.(@id)}
         class="flex text-sm font-medium text-gray-900 truncate dark:text-white"
       >
-        <%= @title %>
+        {@title}
         <.icon :if={@title_icon != nil} name={@title_icon} class="w-3 h-3 self-center ml-1" />
       </p>
       <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-        <%= @subtitle %>
+        {@subtitle}
       </p>
     </div>
     <div class="flex-shrink-0">
@@ -137,7 +137,7 @@ defmodule ReflectOS.ConsoleWeb.PageComponents do
               phx-click={JS.patch(patch) |> toggle_dropdown("action-menu-#{@id}")}
               class={"#{classes} block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"}
             >
-              <%= label %>
+              {label}
             </a>
           </li>
         </ul>

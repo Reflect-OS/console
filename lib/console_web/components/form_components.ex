@@ -95,22 +95,22 @@ defmodule ReflectOS.ConsoleWeb.FormComponents do
           class="rounded border-zinc-300 text-zinc-900 focus:ring-0"
           {@rest}
         />
-        <%= @label %>
+        {@label}
       </label>
       <p :if={is_function(@help_text)} class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-        <%= Phoenix.LiveView.TagEngine.component(
+        {Phoenix.LiveView.TagEngine.component(
           @help_text,
           [],
           {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
-        ) %>
+        )}
       </p>
       <p
         :if={!is_function(@help_text) && @help_text != []}
         class="mt-2 text-sm text-gray-500 dark:text-gray-400"
       >
-        <%= render_slot(@help_text) %>
+        {render_slot(@help_text)}
       </p>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """
   end
@@ -119,7 +119,7 @@ defmodule ReflectOS.ConsoleWeb.FormComponents do
     ~H"""
     <div class={["mb-5", @hidden? && "hidden"]}>
       <.label for={@id}>
-        <%= @label %>
+        {@label}
       </.label>
       <select
         id={@id}
@@ -128,23 +128,23 @@ defmodule ReflectOS.ConsoleWeb.FormComponents do
         multiple={@multiple}
         {@rest}
       >
-        <option :if={@prompt} value=""><%= @prompt %></option>
-        <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
+        <option :if={@prompt} value="">{@prompt}</option>
+        {Phoenix.HTML.Form.options_for_select(@options, @value)}
       </select>
       <p :if={is_function(@help_text)} class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-        <%= Phoenix.LiveView.TagEngine.component(
+        {Phoenix.LiveView.TagEngine.component(
           @help_text,
           [],
           {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
-        ) %>
+        )}
       </p>
       <p
         :if={!is_function(@help_text) && @help_text != []}
         class="mt-2 text-sm text-gray-500 dark:text-gray-400"
       >
-        <%= render_slot(@help_text) %>
+        {render_slot(@help_text)}
       </p>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """
   end
@@ -152,7 +152,7 @@ defmodule ReflectOS.ConsoleWeb.FormComponents do
   def input(%{type: "textarea"} = assigns) do
     ~H"""
     <div class={["mb-5", @hidden? && "hidden"]}>
-      <.label for={@id}><%= @label %></.label>
+      <.label for={@id}>{@label}</.label>
       <textarea
         id={@id}
         name={@name}
@@ -164,19 +164,19 @@ defmodule ReflectOS.ConsoleWeb.FormComponents do
         {@rest}
       ><%= Phoenix.HTML.Form.normalize_value("textarea", @value) %></textarea>
       <p :if={is_function(@help_text)} class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-        <%= Phoenix.LiveView.TagEngine.component(
+        {Phoenix.LiveView.TagEngine.component(
           @help_text,
           [],
           {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
-        ) %>
+        )}
       </p>
       <p
         :if={!is_function(@help_text) && @help_text != []}
         class="mt-2 text-sm text-gray-500 dark:text-gray-400"
       >
-        <%= render_slot(@help_text) %>
+        {render_slot(@help_text)}
       </p>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """
   end
@@ -185,13 +185,13 @@ defmodule ReflectOS.ConsoleWeb.FormComponents do
   def input(assigns) do
     ~H"""
     <div class={["mb-5", @hidden? && "hidden"]}>
-      <.label for={@id}><%= @label %></.label>
+      <.label for={@id}>{@label}</.label>
       <div class="relative">
         <div
           if={@icon != []}
           class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
         >
-          <%= render_slot(@icon) %>
+          {render_slot(@icon)}
         </div>
         <input
           type={@type}
@@ -211,19 +211,19 @@ defmodule ReflectOS.ConsoleWeb.FormComponents do
       </div>
 
       <p :if={is_function(@help_text)} class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-        <%= Phoenix.LiveView.TagEngine.component(
+        {Phoenix.LiveView.TagEngine.component(
           @help_text,
           [],
           {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
-        ) %>
+        )}
       </p>
       <p
         :if={!is_function(@help_text) && @help_text != []}
         class="mt-2 text-sm text-gray-500 dark:text-gray-400"
       >
-        <%= render_slot(@help_text) %>
+        {render_slot(@help_text)}
       </p>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """
   end
@@ -237,7 +237,7 @@ defmodule ReflectOS.ConsoleWeb.FormComponents do
   def label(assigns) do
     ~H"""
     <label for={@for} class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </label>
     """
   end
@@ -250,7 +250,7 @@ defmodule ReflectOS.ConsoleWeb.FormComponents do
   def error(assigns) do
     ~H"""
     <p class="mt-2 text-sm text-red-600 dark:text-red-500">
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </p>
     """
   end
@@ -282,9 +282,9 @@ defmodule ReflectOS.ConsoleWeb.FormComponents do
     ~H"""
     <.form :let={f} for={@for} as={@as} {@rest}>
       <div class="mt-5 space-y-8 bg-white">
-        <%= render_slot(@inner_block, f) %>
+        {render_slot(@inner_block, f)}
         <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
-          <%= render_slot(action, f) %>
+          {render_slot(action, f)}
         </div>
       </div>
     </.form>
@@ -299,15 +299,15 @@ defmodule ReflectOS.ConsoleWeb.FormComponents do
     ~H"""
     <div>
       <h5 class="text-l font-medium text-gray-900 dark:text-white">
-        <%= @option.label %>
+        {@option.label}
       </h5>
       <hr class="h-px mb-3 bg-gray-200 border-0 dark:bg-gray-700" />
       <p :if={is_function(@option.description)} class="mb-3 text-sm text-gray-500 dark:text-gray-400">
-        <%= Phoenix.LiveView.TagEngine.component(
+        {Phoenix.LiveView.TagEngine.component(
           @option.description,
           [],
           {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
-        ) %>
+        )}
       </p>
 
       <.config_form_part :for={option <- @option.options} form={@form} option={option} />
@@ -349,7 +349,7 @@ defmodule ReflectOS.ConsoleWeb.FormComponents do
       <.config_form_part :for={option <- @config_options} form={@for} option={option} />
 
       <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
-        <%= render_slot(action, f) %>
+        {render_slot(action, f)}
       </div>
     </.simple_form>
     """
