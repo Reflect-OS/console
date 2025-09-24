@@ -56,7 +56,7 @@ defmodule ReflectOS.Console.MixProject do
       {:phoenix_ecto, "~> 4.6"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev, targets: [:host]},
-      {:phoenix_live_view, "~> 1.1", override: true},
+      {:phoenix_live_view, "~> 1.1"},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev && Mix.target() == :host},
       {:tailwind, "~> 0.2", runtime: Mix.env() == :dev && Mix.target() == :host},
@@ -70,7 +70,7 @@ defmodule ReflectOS.Console.MixProject do
       # ReflectOS
       {:reflect_os_kernel, "~> 0.10.0"},
       # Only bring in core for dev
-      {:reflect_os_core, "~> 0.10.0", only: :dev},
+      {:reflect_os_core, "~> 0.10.5", only: :dev},
       {:nerves_time_zones, "~> 0.3.2"}
     ]
   end
