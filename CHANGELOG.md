@@ -2,6 +2,8 @@
 
 ## v0.10.4
 
+* Bump dependencies
+
 ## v0.10.3
 
 * Fix to include web app icons
