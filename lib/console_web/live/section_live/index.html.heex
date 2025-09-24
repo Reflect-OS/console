@@ -88,15 +88,15 @@
   on_cancel={JS.patch(~p"/sections")}
 >
   <div class="inline-flex items-center">
-    <%= %{icon: icon} = @section.module.section_definition()
+    {%{icon: icon} = @section.module.section_definition()
 
-    raw_icon(icon, class: "w-6 h-6 self-center mr-3") %>
+    raw_icon(icon, class: "w-6 h-6 self-center mr-3")}
     <div>
       <h5 class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
         Delete Section
       </h5>
       <p class="font-thin">
-        <%= @section.name %>
+        {@section.name}
       </p>
     </div>
   </div>

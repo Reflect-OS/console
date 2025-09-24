@@ -13,15 +13,15 @@ defmodule ReflectOS.ConsoleWeb.SectionLive.RenameFormComponent do
     ~H"""
     <div>
       <div class="inline-flex items-center">
-        <%= %{icon: icon} = @section.module.section_definition()
+        {%{icon: icon} = @section.module.section_definition()
 
-        raw_icon(icon, class: "w-6 h-6 self-center mr-3") %>
+        raw_icon(icon, class: "w-6 h-6 self-center mr-3")}
         <div>
           <h5 class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
             Rename Section
           </h5>
           <p class="font-thin">
-            <%= @section.name %>
+            {@section.name}
           </p>
         </div>
       </div>

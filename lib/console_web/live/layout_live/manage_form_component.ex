@@ -11,15 +11,15 @@ defmodule ReflectOS.ConsoleWeb.LayoutLive.ManageFormComponent do
     ~H"""
     <div>
       <div class="inline-flex items-center">
-        <%= %{icon: icon} = @reflectos_layout.module.layout_definition()
+        {%{icon: icon} = @reflectos_layout.module.layout_definition()
 
-        raw_icon(icon, class: "w-6 h-6 self-center mr-3") %>
+        raw_icon(icon, class: "w-6 h-6 self-center mr-3")}
         <div>
           <h5 class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
             Layout Sections
           </h5>
           <p class="font-thin">
-            <%= @reflectos_layout.name %>
+            {@reflectos_layout.name}
           </p>
         </div>
       </div>
@@ -27,7 +27,7 @@ defmodule ReflectOS.ConsoleWeb.LayoutLive.ManageFormComponent do
       <form phx-target={@myself} phx-submit="save" class="mt-5 space-y-8 bg-white">
         <div :for={{key, label, sections} <- @location_sections}>
           <h5 class="text-l font-medium text-gray-900 dark:text-white">
-            <%= label %>
+            {label}
           </h5>
           <hr class="h-px mb-3 bg-gray-200 border-0 dark:bg-gray-700" />
           <div :for={{section_id, index} <- Enum.with_index(sections)} class="flex items-center">

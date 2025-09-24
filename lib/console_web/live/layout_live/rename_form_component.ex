@@ -13,15 +13,15 @@ defmodule ReflectOS.ConsoleWeb.LayoutLive.RenameFormComponent do
     ~H"""
     <div>
       <div class="inline-flex items-center">
-        <%= %{icon: icon} = @reflectos_layout.module.layout_definition()
+        {%{icon: icon} = @reflectos_layout.module.layout_definition()
 
-        raw_icon(icon, class: "w-6 h-6 self-center mr-3") %>
+        raw_icon(icon, class: "w-6 h-6 self-center mr-3")}
         <div>
           <h5 class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
             Rename Layout
           </h5>
           <p class="font-thin">
-            <%= @reflectos_layout.name %>
+            {@reflectos_layout.name}
           </p>
         </div>
       </div>

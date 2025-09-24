@@ -13,15 +13,15 @@ defmodule ReflectOS.ConsoleWeb.LayoutManagerLive.ConfigFormComponent do
     ~H"""
     <div>
       <div class="inline-flex items-center">
-        <%= %{icon: icon} = @layout_manager.module.layout_manager_definition()
+        {%{icon: icon} = @layout_manager.module.layout_manager_definition()
 
-        raw_icon(icon, class: "w-6 h-6 self-center mr-3") %>
+        raw_icon(icon, class: "w-6 h-6 self-center mr-3")}
         <div>
           <h5 class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
             Configure Layout Manager
           </h5>
           <p class="font-thin">
-            <%= @layout_manager.name %>
+            {@layout_manager.name}
           </p>
         </div>
       </div>
